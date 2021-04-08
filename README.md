@@ -2,8 +2,8 @@
   <h1>react-create-global-state</h1>
 
   [![NPM](https://img.shields.io/npm/v/react-create-global-state.svg)](https://www.npmjs.com/package/react-create-global-state)
-  ![Tests](./workflows/Tests/badge.svg)
-  ![Build](./workflows/Build/badge.svg)
+  ![Tests](../../workflows/Tests/badge.svg)
+  ![Build](../../workflows/Build/badge.svg)
   ![Downloads](https://img.shields.io/npm/dt/react-create-global-state.svg)
   ![Bundle Size](https://img.shields.io/bundlephobia/min/react-create-global-state.svg)
   ![License](https://img.shields.io/npm/l/vanilla-enum.svg)
