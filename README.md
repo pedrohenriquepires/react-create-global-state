@@ -1,100 +1,88 @@
-# react-create-global-state
+<div align="center">
+  <h1>react-create-global-state</h1>
 
-Generate a useState, but for global variables.
+  [![NPM](https://img.shields.io/npm/v/react-create-global-state.svg)](https://www.npmjs.com/package/react-create-global-state)
+  ![Downloads](https://img.shields.io/npm/dt/react-create-global-state.svg)
+  ![Bundle Size](https://img.shields.io/bundlephobia/min/react-create-global-state.svg)
+  ![License](https://img.shields.io/npm/l/vanilla-enum.svg)
 
+  <p>Generate a useState, but for global variables.</p>
+</div>
+
+---
 
 ## Usage
 
 1 - Create your custom hook
 
-```jsx
-/**
- * useGlobalCounter.js
-*/
+```tsx
+// use-global-counter.tsx
 
 import createGlobalState from 'react-create-global-state'
 
-// create the global for your hook
-const initialState = 0
+const [useGlobalCounter, GlobalCounterProvider] = createGlobalState<number>(0)
 
-const [useGlobalCounter, Provider] = createGlobalState(initialState)
-
-// export the provider to link in the application
-export const GlobalCounterProvider = Provider
-
-// export the hook
+export GlobalCounterProvider
 export default useGlobalCounter
 ```
 
 2 - Link the provider in your application
 
-```jsx
+```tsx
+// app.tsx
+
 import React, { Component } from 'react';
+import { GlobalCounterProvider } from './use-global-counter'
 
-// import the provider from your global var
-import { GlobalCounterProvider } from './useGlobalCounter'
-
-class App extends Component {
-  render() {
-    return (
-      // add the provider.
-      <GlobalCounterProvider>
-        <div>
-          {/*...*/}
-        </div>
-      </GlobalCounterProvider>
-    );
-  }
-}
+const App = () => (
+  <GlobalCounterProvider>
+    <div>
+      {/*...*/}
+    </div>
+  </GlobalCounterProvider>
+)
 
 export default App
-
 ```
 
 3 - Use the hook
 
-```jsx
-/**
- * Counter.js
-*/
-import React from 'react'
-import useGlobalCounter from './useGlobalCounter'
+```tsx
+// counter.tsx
 
-export default function Counter(props) {
-  const [state, setState] = useGlobalCounter()
+import React from 'react'
+import useGlobalCounter from './use-global-counter'
+
+const Counter = () => {
+  const [counter, setCounter] = useGlobalCounter()
 
   return (
     <div>
-      <p>State: {state}</p>
-      <button onClick={() => setState(state + 1)}>+1</button>
-      <button onClick={() => setState(state - 1)}>-1</button>
+      <p>State: {counter}</p>
+      <button onClick={() => setCounter(counter + 1)}>+1</button>
+      <button onClick={() => setCounter(counter - 1)}>-1</button>
     </div>
   )
 }
+
+export default Counter
 ```
 
 ```jsx
-/**
- * App.js
-*/
+// app.tsx
+
 import React, { Component } from 'react';
-
 import { GlobalCounterProvider } from './useGlobalCounter'
-
 import Counter from './Counter'
 
-class App extends Component {
-  render() {
-    return (
-      <GlobalCounterProvider>
-        <div style={{ margin: '20px' }}>
-          <Counter />
-          <Counter />
-        </div>
-      </GlobalCounterProvider>
-    );
-  }
-}
+const App = () => (
+  <GlobalCounterProvider>
+    <div style={{ margin: '20px' }}>
+      <Counter />
+      <Counter />
+    </div>
+  </GlobalCounterProvider>
+)
 
 export default App
 ```
@@ -104,7 +92,7 @@ Result:
 ![result-image](docs/global-state.gif)
 
 
-## Sample
+ ## Sample
 
 You can check the sample code [HERE](https://github.com/benhurott/react-create-global-state-sample)
 
