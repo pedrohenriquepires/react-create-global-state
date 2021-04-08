@@ -1,4 +1,4 @@
-name: Tests
+name: Build
 
 on:
   push:
@@ -27,5 +27,5 @@ jobs:
         with:
           useLockFile: false
 
-      - name: ▶️ Run tests
-        run: npm run test
+      - name: ▶️ Run build
+        run: npm run build
